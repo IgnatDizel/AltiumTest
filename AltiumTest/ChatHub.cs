@@ -13,7 +13,7 @@ namespace AltiumTest
   public class ChatHub : Hub
   {
     private readonly IMessageService _messageService;
-    private static ConcurrentDictionary<string, string> users = new ConcurrentDictionary<string, string>();
+    private static readonly ConcurrentDictionary<string, string> users = new ConcurrentDictionary<string, string>();
 
     public ChatHub(IMessageService messageService) : base()
     {
@@ -41,12 +41,9 @@ namespace AltiumTest
 
     public async Task Send(Models.NewMessage newMessage)
     {
-      Services.Models.NewMessage message = new Services.Models.NewMessage()
-      {
-        UserName = newMessage.UserName,
-        Text = newMessage.Text,
-      };
-
+      Services.Models.NewMessage message =
+        new Services.Models.NewMessage(newMessage.UserName, newMessage.Text);
+     
       await _messageService.CreateAsync(message);
       await this.Clients.All.SendAsync("Send", message);
     }

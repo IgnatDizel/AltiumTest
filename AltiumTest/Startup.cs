@@ -1,5 +1,6 @@
 using AltiumTest.Data.Abstractions;
 using AltiumTest.Data.EF.SQLServer;
+using AltiumTest.Middlewares;
 using AltiumTest.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace AltiumTest
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
     {
       loggerFactory.AddSerilog();
+      app.UseMiddleware<SerilogMiddleware>();
 
       if (env.IsDevelopment())
       {
@@ -45,8 +47,6 @@ namespace AltiumTest
       app.UseRouting();
       app.UseDefaultFiles();
       app.UseStaticFiles();
-
-      app.UseRouting();
 
       app.UseEndpoints(endpoints =>
       {

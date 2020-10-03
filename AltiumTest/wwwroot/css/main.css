@@ -1,0 +1,23 @@
+﻿body {
+    margin: 30px;
+}
+
+#loginForm {
+    display: block;
+}
+
+#chatbox {
+    display: none;
+}
+
+#inputForm p {
+    padding-left: 10px
+}
+
+#messagebox{
+    height: 500px;
+    width: 600px;
+    border: 1px solid;
+    overflow: auto;
+    margin-bottom: 10px
+}

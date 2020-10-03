@@ -22,20 +22,13 @@ namespace AltiumTest.Services
 
     public async Task<IEnumerable<Message>> GetMessagesAsync(DateTime? lastMessageTime, int limit)
     {
-      try
-      {
-        if (limit > maxLimit)
-          limit = maxLimit;
+      if (limit > maxLimit)
+        limit = maxLimit;
 
-        return (await _unitOfWork.Messages.GetListAsync(lastMessageTime, limit))
-          .OrderBy(x => x.Created)
-          .Select(x => new Message(x));
-      }
-      catch (Exception ex)
-      {
-        _logger.LogError(ex, $"params: lastMessageTime:{lastMessageTime}, limit:{limit}");
-        throw;
-      }    
+      return (await _unitOfWork.Messages.GetListAsync(lastMessageTime, limit))
+        .OrderBy(x => x.Created)
+        .Select(x => new Message(x));
+      
     }
 
     public async Task<Message> CreateAsync(NewMessage message)
