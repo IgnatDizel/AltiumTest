@@ -34,7 +34,7 @@ namespace AltiumTest
           b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+    public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
     {
       loggerFactory.AddSerilog();
       app.UseMiddleware<SerilogMiddleware>();

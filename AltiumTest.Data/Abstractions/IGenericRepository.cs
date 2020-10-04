@@ -10,7 +10,7 @@ namespace AltiumTest.Data.Abstractions
   public interface IBaseRepository<T> where T : IEntity
   {
     Task<T> GetByIdAsync(int id);
-    Task<IEnumerable<T>> GetAllAsync();
+    IQueryable<T> GetAllAsync();
     IQueryable<T> Find(Expression<Func<T, bool>> expression);
     Task AddAsync(T entity);
     Task AddRangeAsync(IEnumerable<T> entities);

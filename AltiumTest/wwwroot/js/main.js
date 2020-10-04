@@ -35,13 +35,13 @@
                 let $firstMessage = $("#messagebox").children().first();
 
                 altiumTest.GetMessages(function (data) {
-                    var topBeforeInsert = $firstMessage.offset().top;
+                    let topBeforeInsert = $firstMessage.offset().top;
 
                     for (let i = data.length - 1; i >= 0; i--) {
                         altiumTest.AddMessageUp(data[i]);
                     }
 
-                    var topAfterInsert = $firstMessage.offset().top;
+                    let topAfterInsert = $firstMessage.offset().top;
                     $("#messagebox").scrollTop(topAfterInsert - topBeforeInsert);
 
                 }, $firstMessage.attr("created"))

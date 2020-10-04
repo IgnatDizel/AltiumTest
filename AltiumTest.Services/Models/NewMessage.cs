@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AltiumTest.Shared.Exceptions;
+using System;
 
 namespace AltiumTest.Services.Models
 {
@@ -10,7 +11,7 @@ namespace AltiumTest.Services.Models
     public NewMessage(string userName, string text)
     {
       if (!IsValidUserName(userName) || !IsValidText(text))
-        throw new Exception("invalid message");
+        throw new InvalidModelException("invalid message");
 
       UserName = userName;
       Text = text;

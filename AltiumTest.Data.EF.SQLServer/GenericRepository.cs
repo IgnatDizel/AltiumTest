@@ -23,9 +23,9 @@ namespace AltiumTest.Data.EF.SQLServer
       return await context.Set<T>().FindAsync(id);
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public IQueryable<T> GetAllAsync()
     {
-      return await context.Set<T>().ToListAsync();
+      return context.Set<T>();
     }
 
     public IQueryable<T> Find(Expression<Func<T, bool>> expression)

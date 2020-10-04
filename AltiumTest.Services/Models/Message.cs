@@ -9,9 +9,6 @@ namespace AltiumTest.Services.Models
     public string UserName { get; set; }
     public string Text { get; set; }
 
-    public Message()
-    { }
-
     public Message(Data.Entities.Message message)
     {
       Id = message.Id;

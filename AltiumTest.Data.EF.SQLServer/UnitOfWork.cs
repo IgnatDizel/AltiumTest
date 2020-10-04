@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace AltiumTest.Data.EF.SQLServer
 {
-  public class UnitOfWork: IUnitOfWork
+  public sealed class UnitOfWork: IUnitOfWork
   {
     private readonly ApplicationContext _context;
 

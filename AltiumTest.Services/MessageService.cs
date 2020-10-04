@@ -11,13 +11,11 @@ namespace AltiumTest.Services
   public class MessageService: IMessageService
   {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<MessageService> _logger;
     private readonly int maxLimit = 50;
 
-    public MessageService(IUnitOfWork unitOfWork, ILogger<MessageService> logger)
+    public MessageService(IUnitOfWork unitOfWork)
     {
       _unitOfWork = unitOfWork;
-      _logger = logger;
     }
 
     public async Task<IEnumerable<Message>> GetMessagesAsync(DateTime? lastMessageTime, int limit)

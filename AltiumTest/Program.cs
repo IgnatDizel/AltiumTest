@@ -11,7 +11,7 @@ using Serilog.Events;
 
 namespace AltiumTest
 {
-  public class Program
+  public static class Program
   {
     public static void Main(string[] args)
     {
@@ -29,13 +29,12 @@ namespace AltiumTest
       catch (Exception exception)
       {
         Log.Error(exception, "Stopped program");
+        throw;
       }
       finally
       {
         Log.CloseAndFlush();
-      }
-
-      
+      }   
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

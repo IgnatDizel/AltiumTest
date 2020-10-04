@@ -59,26 +59,8 @@ namespace AltiumTest.Middlewares
     static bool LogException(HttpContext httpContext, Stopwatch sw, Exception ex)
     {
       sw.Stop();
-
-      LogForErrorContext(httpContext)
-          .Error(ex, MessageTemplate, httpContext.Request.Method, httpContext.Request.Path, 500, sw.Elapsed.TotalMilliseconds);
-
+      _log.Error(ex, MessageTemplate, httpContext.Request.Method, httpContext.Request.Path, 500, sw.Elapsed.TotalMilliseconds);
       return false;
-    }
-
-    static Serilog.ILogger LogForErrorContext(HttpContext httpContext)
-    {
-      var request = httpContext.Request;
-
-      var result = _log
-          .ForContext("RequestHeaders", request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()), destructureObjects: true)
-          .ForContext("RequestHost", request.Host)
-          .ForContext("RequestProtocol", request.Protocol);
-
-      if (request.HasFormContentType)
-        result = result.ForContext("RequestForm", request.Form.ToDictionary(v => v.Key, v => v.Value.ToString()));
-
-      return result;
-    }
+    }   
   }
 }
